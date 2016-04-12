@@ -1,9 +1,14 @@
 /********Design Pattern: Factory Pattern*********/
+#include <boost/function.hpp>
+
+typedef  boost::function<int(int ,int)> Func;
+
 template<typename T>
 class Try
 {
 	public:
-		Try(T p1, T p2): t1(p1), t2(p2)
+		Try(T p1, T p2): t1(p1), t2(p2), \
+			val_1(-1), val_2(-2)
 		{
 		
 		};
@@ -15,9 +20,27 @@ class Try
 
 		virtual T Add() = 0;
 
+	    void SetFunc(Func func_input, int input_1, int input_2)
+		{
+				func = func_input;
+				val_1 = input_1;
+				val_2 = input_2;
+		};
+
+
+		T ExecuteFunc()
+		{
+				return (T)func(val_1, val_2);
+		};
+
 	protected:
 		T t1;
 		T t2;
+
+	private:
+		Func  func;
+		int val_1;
+		int val_2;
 
 };
 

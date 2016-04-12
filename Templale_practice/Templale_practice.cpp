@@ -4,16 +4,22 @@
 #include "stdafx.h"
 #include "Templale_practice.h"
 #include "Try.h"
+#include "CommonFunction.h"
+#include <boost/bind.hpp>
+
+#pragma comment(lib, "..\\Debug\\Utility.lib")  
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPTSTR    lpCmdLine,
                      int       nCmdShow)
 {
-		float a1=0.1;
-		float a2=0.2;
-		float a3;
-		float a4;
+		float a1 = 0.1;
+		float a2 = 0.2;
+		float a3 = 0.0;
+		float a4 = 0.0;
+		float b5 = -1.0;
+		float b6 = -1.0;
 
 		TryFactory<float>* p_try_factory1 = new Try_Derive1Factory<float>(a1, a2);
 		TryFactory<float>* p_try_factory2 = new Try_Derive2Factory<float>(a1, a2);
@@ -21,4 +27,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		Try<float>* p_try2 = p_try_factory2->CreateTry();
 		a3 = p_try1->Add();
 		a4 = p_try2->Add();
+
+		p_try1->SetFunc(boost::bind(Func1,_1,_2), 15, 5);
+		p_try2->SetFunc(boost::bind(Func2,_1,_2), 15, 5);
+		b5 = p_try1->ExecuteFunc();
+		b6 = p_try2->ExecuteFunc();
 }
