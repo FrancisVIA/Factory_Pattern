@@ -5,6 +5,8 @@
 #include "Templale_practice.h"
 #include "Try.h"
 #include "CommonFunction.h"
+#include "CosumerThread.h"
+#include "ProducerThread.h"
 #include <boost/bind.hpp>
 
 #pragma comment(lib, "..\\Debug\\Utility.lib")  
@@ -32,4 +34,23 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		p_try2->SetFunc(boost::bind(Func2,_1,_2), 15, 5);
 		b5 = p_try1->ExecuteFunc();
 		b6 = p_try2->ExecuteFunc();
+
+		AsyncQueue<int> queue_temp;
+		CosumerThread  Cosumer;
+		ProduerThread   Producer;
+		int cosumer_ID =-1;
+		int producer_ID =-1;
+		Cosumer.SetGetter(&queue_temp);
+		Producer.SetPutter(&queue_temp);
+
+		Producer.Start();
+		Sleep(5*1000);
+		Cosumer.Start();
+
+		cosumer_ID = Cosumer.GetThreadID();
+		producer_ID = Producer.GetThreadID();
+
+		Producer.Stop();
+		Sleep(5*1000);
+		Cosumer.Stop();
 }

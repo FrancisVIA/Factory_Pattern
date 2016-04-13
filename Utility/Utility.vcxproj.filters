@@ -21,9 +21,24 @@
     <ClInclude Include="CommonFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BaseThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AsyncQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommonFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsyncQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
