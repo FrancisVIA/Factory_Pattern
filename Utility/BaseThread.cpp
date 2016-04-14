@@ -16,7 +16,7 @@ BaseThread::~BaseThread()
 
 void BaseThread::Start()
 {
-		event_handle = CreateEvent(NULL, TRUE, TRUE, NULL);
+		event_handle = CreateEvent(NULL, TRUE, FALSE, NULL);
 		if (event_handle)
 		{
 				thread_handle = (HANDLE)_beginthreadex(NULL, 0 , ThreadProc, this, 0 , &thread_ID);
@@ -25,7 +25,7 @@ void BaseThread::Start()
 
 void BaseThread::Stop()
 {
-		ResetEvent(event_handle);
+		SetEvent(event_handle);
 		CloseHandle(event_handle);
 		event_handle = NULL;
 		Sleep(10);
@@ -41,8 +41,8 @@ DWORD BaseThread::GetThreadID()
 UINT WINAPI BaseThread::ThreadProc(void *ptr)
 {
 		BaseThread* pThis = (BaseThread *)ptr;
-		int ret = WAIT_OBJECT_0;
-		while(ret == WAIT_OBJECT_0)
+		int ret = -1;
+		while(ret != WAIT_OBJECT_0)
 		{
 				pThis->Run();
 				ret = WaitForSingleObject(pThis->event_handle, 0);
