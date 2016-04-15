@@ -8,10 +8,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	LPTSTR    lpCmdLine,
 	int       nCmdShow)
 {
-		ServerSystem serverSystem;
-		serverSystem.SetServer(100);
-		serverSystem.CreateConnection();
-		while(1);
-
+		if (!g_ServerSystem().Init())
+		{
+				return 0;
+		}
+		g_ServerSystem().SetServer(12345);
+		g_ServerSystem().CreateConnection();
+		g_ServerSystem().MainLoop();
 		return 0;
 }

@@ -8,11 +8,15 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	LPTSTR    lpCmdLine,
 	int       nCmdShow)
 {
-		ClientSystem clientSystem;
+		if (!g_ClientSystem().Init())
+		{
+				return 0;
+		}
 		std::string IP = "127.0.0.1";
-		clientSystem.SetServer(IP, 100);
-		clientSystem.CreateConnection();
-		clientSystem.TerminateConnection();
+		g_ClientSystem().SetServer(IP, 12345);
+		g_ClientSystem().CreateConnection();
+		g_ClientSystem().MainLoop();
+		g_ClientSystem().TerminateConnection();
 	
 		return 0;
 }

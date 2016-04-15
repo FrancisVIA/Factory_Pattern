@@ -1,9 +1,16 @@
 #include "ClientSystem.h"
 
-ClientSystem::ClientSystem():
+ClientSystem& g_ClientSystem()
+{
+		static ClientSystem clientSystem;
+		return clientSystem;
+}
+
+ClientSystem::ClientSystem():BaseSystem(),\
 sock(-1)
 {
 		memset(&serverAddr , 0, sizeof(serverAddr));
+		SetName("Client");
 }
 
 ClientSystem::~ClientSystem()
@@ -15,7 +22,7 @@ void ClientSystem::SetServer(string& IP, int port)
 {
 		memset(&serverAddr , 0, sizeof(serverAddr));
 		serverAddr.sin_family = AF_INET;
-		serverAddr.sin_port = port;
+		serverAddr.sin_port = htons(port);
 		serverAddr.sin_addr.S_un.S_addr = inet_addr(IP.c_str());
 }
 

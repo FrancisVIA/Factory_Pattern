@@ -74,12 +74,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AsyncQueue.h" />
+    <ClInclude Include="BaseSystem.h" />
     <ClInclude Include="BaseThread.h" />
     <ClInclude Include="CommonFunction.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AsyncQueue.cpp" />
+    <ClCompile Include="BaseSystem.cpp" />
     <ClCompile Include="BaseThread.cpp" />
     <ClCompile Include="CommonFunction.cpp" />
   </ItemGroup>

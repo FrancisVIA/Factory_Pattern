@@ -4,10 +4,11 @@
 #include "stdafx.h"
 #include <string>
 #include "ClientThread.h"
+#include "..\Utility\BaseSystem.h"
 
 using namespace std;
 
-class ClientSystem
+class ClientSystem:public BaseSystem
 {
 public:
 		ClientSystem();
@@ -24,5 +25,6 @@ private:
 	   
 };
 
+ClientSystem& g_ClientSystem();
 
 #endif

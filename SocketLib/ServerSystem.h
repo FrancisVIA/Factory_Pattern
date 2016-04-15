@@ -3,8 +3,9 @@
 
 #include "stdafx.h"
 #include "ServerThread.h"
+#include "..\Utility\BaseSystem.h"
 
-class ServerSystem
+class ServerSystem:public BaseSystem
 {
 public:
 		ServerSystem();
@@ -23,7 +24,7 @@ private:
 };
 
 
-
+ServerSystem& g_ServerSystem();
 
 
 

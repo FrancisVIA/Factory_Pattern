@@ -2,14 +2,25 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Templale_practice", "Templale_practice\Templale_practice.vcxproj", "{A166B74F-6141-407B-898F-80301A524BF5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{663AF138-A82A-48F6-B444-99C9DF54F893} = {663AF138-A82A-48F6-B444-99C9DF54F893}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utility", "Utility\Utility.vcxproj", "{663AF138-A82A-48F6-B444-99C9DF54F893}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Client.vcxproj", "{30CE137A-8056-4311-8449-7F9AC1411644}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ECACD806-592A-4E37-B72D-CE73A410543B} = {ECACD806-592A-4E37-B72D-CE73A410543B}
+		{663AF138-A82A-48F6-B444-99C9DF54F893} = {663AF138-A82A-48F6-B444-99C9DF54F893}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SocketLib", "SocketLib\SocketLib.vcxproj", "{ECACD806-592A-4E37-B72D-CE73A410543B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "Server\Server.vcxproj", "{52A3E837-6A15-47D4-A70A-3616D5EA5099}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ECACD806-592A-4E37-B72D-CE73A410543B} = {ECACD806-592A-4E37-B72D-CE73A410543B}
+		{663AF138-A82A-48F6-B444-99C9DF54F893} = {663AF138-A82A-48F6-B444-99C9DF54F893}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
