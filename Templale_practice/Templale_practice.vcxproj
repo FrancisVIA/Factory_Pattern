@@ -80,6 +80,7 @@
     <None Include="Templale_practice.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CosumerThread.h" />
     <ClInclude Include="ProducerThread.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -89,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CosumerThread.cpp" />
-    <ClCompile Include="CosumerThread.h" />
     <ClCompile Include="ProducerThread.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
