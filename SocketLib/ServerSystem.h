@@ -11,10 +11,12 @@ public:
 		ServerSystem();
 		~ServerSystem();
 
-		void SetServer(int port);
+		void SetServer(int port, int connection_limit);
 		bool CreateConnection();
+		virtual bool ProcessConnection();
 
-private:
+protected:
+	   int connection_limit;
 	   SOCKET listen_sock;
 	   SOCKET accept_sock;
 	   struct sockaddr_in serverAddr;

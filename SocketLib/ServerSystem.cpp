@@ -19,12 +19,13 @@ ServerSystem::~ServerSystem()
 
 }
 
-void ServerSystem::SetServer(int port)
+void ServerSystem::SetServer(int port, int connection_limit_input)
 {
 		memset(&serverAddr , 0, sizeof(serverAddr));
 		serverAddr.sin_family = AF_INET;
 		serverAddr.sin_port = htons(port);
 		serverAddr.sin_addr.S_un.S_addr = INADDR_ANY;
+		connection_limit = connection_limit_input;
 }
 
 bool ServerSystem::CreateConnection()
@@ -60,23 +61,24 @@ bool ServerSystem::CreateConnection()
 				return false;
 		}
 
-		err = listen(listen_sock , 1);
+		err = listen(listen_sock , connection_limit);
 
 		if (err!=0)
 		{
 				return false;
 		}
 
-		while (1)
+		return true;
+}
+
+bool ServerSystem::ProcessConnection()
+{
+		int len = sizeof(clientAddr);
+		accept_sock = accept(listen_sock, (SOCKADDR*)&clientAddr, &len);
+		if (accept_sock!= INVALID_SOCKET)
 		{
-				int len = sizeof(clientAddr);
-				accept_sock = accept(listen_sock, (SOCKADDR*)&clientAddr, &len);
-				if (accept_sock!= INVALID_SOCKET)
-				{
-						serverThread.SetSocket(accept_sock);
-						serverThread.Start();
-						break;
-				}
+				serverThread.SetSocket(accept_sock);
+				serverThread.Start();			
 		}
 
 		return true;

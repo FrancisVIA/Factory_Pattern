@@ -19,6 +19,7 @@ private:
 		HANDLE event_handle;
 		HANDLE thread_handle;
 		UINT thread_ID;
+		bool thread_status;
 };
 
 #endif

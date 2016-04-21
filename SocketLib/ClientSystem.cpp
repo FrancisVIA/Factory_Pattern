@@ -10,7 +10,12 @@ ClientSystem::ClientSystem():BaseSystem(),\
 sock(-1)
 {
 		memset(&serverAddr , 0, sizeof(serverAddr));
-		SetName("Client");
+		SetGuid();
+		char *temp = new char[256];
+		memset(temp, 0, 256);
+		sprintf(temp, "Client-%s.", guid_buf);
+		SetName(temp);
+		delete []temp;
 }
 
 ClientSystem::~ClientSystem()
@@ -61,6 +66,7 @@ bool ClientSystem::CreateConnection()
 		}
 
 		clientThread.SetSocket(sock);
+		clientThread.SetGuid(guid_buf);
 		clientThread.Start();
 
 		return true;

@@ -6,6 +6,7 @@ BaseThread::BaseThread()
 		event_handle = NULL;
 		thread_handle = NULL;
 		thread_ID = 0;
+		thread_status = false;
 };
 
 BaseThread::~BaseThread()
@@ -17,9 +18,10 @@ BaseThread::~BaseThread()
 void BaseThread::Start()
 {
 		event_handle = CreateEvent(NULL, TRUE, FALSE, NULL);
-		if (event_handle)
+		if (event_handle&&!thread_status)
 		{
 				thread_handle = (HANDLE)_beginthreadex(NULL, 0 , ThreadProc, this, 0 , &thread_ID);
+				thread_status = true;
 		}
 }
 
@@ -30,6 +32,7 @@ void BaseThread::Stop()
 		event_handle = NULL;
 		Sleep(10);
 		CloseHandle(thread_handle);
+		thread_status= false;
 		thread_ID = 0;
 }
 

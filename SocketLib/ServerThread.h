@@ -11,12 +11,15 @@ public:
 		~ServerThread();
 		void SetSocket(SOCKET);
 
+protected:
+		char send_buf[1024];
+		char recv_buf[1024];
+
 private:
 		virtual void Run();
 
 		SOCKET sock;
-		char send_buf[1024];
-		char recv_buf[1024];
+		
 };
 
 #endif

@@ -14,9 +14,12 @@ public:
 		int MainLoop();
 protected:
 		void SetName(char* );
+		void SetGuid();
+
+		char guid_buf[128];
 private:
 		MSG msg;
-		char system_name[64];
+		char system_name[256];
 
 };
 
